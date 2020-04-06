@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListCanchasTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListCanchasEmpty}" rendered="#{canchasController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{canchasController.items.rowCount > 0}">
+                    <h:outputText value="#{canchasController.pagination.pageFirstItem + 1}..#{canchasController.pagination.pageLastItem + 1}/#{canchasController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{canchasController.previous}" value="#{bundle.Previous} #{canchasController.pagination.pageSize}" rendered="#{canchasController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{canchasController.next}" value="#{bundle.Next} #{canchasController.pagination.pageSize}" rendered="#{canchasController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{canchasController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCanchasTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCanchasTitle_numeroCancha}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.numeroCancha}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCanchasTitle_descripcion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.descripcion}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCanchasTitle_empresa}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.empresa}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{canchasController.prepareView}" value="#{bundle.ListCanchasViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{canchasController.prepareEdit}" value="#{bundle.ListCanchasEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{canchasController.destroy}" value="#{bundle.ListCanchasDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{canchasController.prepareCreate}" value="#{bundle.ListCanchasCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListCanchasIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

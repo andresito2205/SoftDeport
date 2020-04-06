@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditCanchasTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditCanchasLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{canchasController.selected.id}" title="#{bundle.EditCanchasTitle_id}" required="true" requiredMessage="#{bundle.EditCanchasRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.EditCanchasLabel_numeroCancha}" for="numeroCancha" />
+                    <h:inputText id="numeroCancha" value="#{canchasController.selected.numeroCancha}" title="#{bundle.EditCanchasTitle_numeroCancha}" required="true" requiredMessage="#{bundle.EditCanchasRequiredMessage_numeroCancha}"/>
+                    <h:outputLabel value="#{bundle.EditCanchasLabel_descripcion}" for="descripcion" />
+                    <h:inputText id="descripcion" value="#{canchasController.selected.descripcion}" title="#{bundle.EditCanchasTitle_descripcion}" required="true" requiredMessage="#{bundle.EditCanchasRequiredMessage_descripcion}"/>
+                    <h:outputLabel value="#{bundle.EditCanchasLabel_empresa}" for="empresa" />
+                    <h:selectOneMenu id="empresa" value="#{canchasController.selected.empresa}" title="#{bundle.EditCanchasTitle_empresa}" required="true" requiredMessage="#{bundle.EditCanchasRequiredMessage_empresa}">
+                        <f:selectItems value="#{empresasController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{canchasController.update}" value="#{bundle.EditCanchasSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditCanchasViewLink}"/>
+                <br />
+                <h:commandLink action="#{canchasController.prepareList}" value="#{bundle.EditCanchasShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditCanchasIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

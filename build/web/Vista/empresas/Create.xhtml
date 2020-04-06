@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateEmpresasTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateEmpresasLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{empresasController.selected.id}" title="#{bundle.CreateEmpresasTitle_id}" required="true" requiredMessage="#{bundle.CreateEmpresasRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.CreateEmpresasLabel_nit}" for="nit" />
+                    <h:inputText id="nit" value="#{empresasController.selected.nit}" title="#{bundle.CreateEmpresasTitle_nit}" required="true" requiredMessage="#{bundle.CreateEmpresasRequiredMessage_nit}"/>
+                    <h:outputLabel value="#{bundle.CreateEmpresasLabel_razonSocial}" for="razonSocial" />
+                    <h:inputText id="razonSocial" value="#{empresasController.selected.razonSocial}" title="#{bundle.CreateEmpresasTitle_razonSocial}" required="true" requiredMessage="#{bundle.CreateEmpresasRequiredMessage_razonSocial}"/>
+                    <h:outputLabel value="#{bundle.CreateEmpresasLabel_direccion}" for="direccion" />
+                    <h:inputText id="direccion" value="#{empresasController.selected.direccion}" title="#{bundle.CreateEmpresasTitle_direccion}" required="true" requiredMessage="#{bundle.CreateEmpresasRequiredMessage_direccion}"/>
+                    <h:outputLabel value="#{bundle.CreateEmpresasLabel_telefono}" for="telefono" />
+                    <h:inputText id="telefono" value="#{empresasController.selected.telefono}" title="#{bundle.CreateEmpresasTitle_telefono}" required="true" requiredMessage="#{bundle.CreateEmpresasRequiredMessage_telefono}"/>
+                    <h:outputLabel value="#{bundle.CreateEmpresasLabel_correo}" for="correo" />
+                    <h:inputText id="correo" value="#{empresasController.selected.correo}" title="#{bundle.CreateEmpresasTitle_correo}" required="true" requiredMessage="#{bundle.CreateEmpresasRequiredMessage_correo}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{empresasController.create}" value="#{bundle.CreateEmpresasSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{empresasController.prepareList}" value="#{bundle.CreateEmpresasShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateEmpresasIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
